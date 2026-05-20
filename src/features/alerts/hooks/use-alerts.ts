@@ -1,0 +1,78 @@
+"use client";
+
+import { useMemo, useState } from "react";
+
+import { cityIncidents } from "../data";
+import type { AlertCategory, CityAlertIncident, ReportDraft } from "../types";
+
+const initialDraft: ReportDraft = {
+  category: null,
+  description: "",
+  locationMode: "gps",
+};
+
+export function useAlerts() {
+  const [selectedIncidentId, setSelectedIncidentId] = useState(cityIncidents[0].id);
+  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [reportStep, setReportStep] = useState(1);
+  const [reportDraft, setReportDraft] = useState<ReportDraft>(initialDraft);
+
+  const selectedIncident = useMemo(
+    () =>
+      cityIncidents.find((incident) => incident.id === selectedIncidentId) ??
+      cityIncidents[0],
+    [selectedIncidentId],
+  );
+
+  function selectIncident(incidentId: CityAlertIncident["id"]) {
+    setSelectedIncidentId(incidentId);
+  }
+
+  function openReport() {
+    setIsReportOpen(true);
+  }
+
+  function closeReport() {
+    setIsReportOpen(false);
+    setReportStep(1);
+    setReportDraft(initialDraft);
+  }
+
+  function chooseCategory(category: AlertCategory) {
+    setReportDraft((currentDraft) => ({ ...currentDraft, category }));
+    setReportStep(2);
+  }
+
+  function updateDescription(description: string) {
+    setReportDraft((currentDraft) => ({ ...currentDraft, description }));
+  }
+
+  function chooseLocationMode(locationMode: ReportDraft["locationMode"]) {
+    setReportDraft((currentDraft) => ({ ...currentDraft, locationMode }));
+  }
+
+  function goToNextStep() {
+    setReportStep((currentStep) => Math.min(currentStep + 1, 4));
+  }
+
+  function goToPreviousStep() {
+    setReportStep((currentStep) => Math.max(currentStep - 1, 1));
+  }
+
+  return {
+    incidents: cityIncidents,
+    selectedIncident,
+    selectedIncidentId,
+    isReportOpen,
+    reportDraft,
+    reportStep,
+    chooseCategory,
+    chooseLocationMode,
+    closeReport,
+    goToNextStep,
+    goToPreviousStep,
+    openReport,
+    selectIncident,
+    updateDescription,
+  };
+}

@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+:root {
+  --background: #051424;
+  --foreground: #eef4ff;
+  --card: #0b1f34;
+  --card-foreground: #eef4ff;
+  --popover: #0b1f34;
+  --popover-foreground: #eef4ff;
+  --primary: #3b82f6;
+  --primary-foreground: #f8fbff;
+  --secondary: #13283d;
+  --secondary-foreground: #dbe7ff;
+  --muted: #162a40;
+  --muted-foreground: #94a3b8;
+  --accent: #1d4ed8;
+  --accent-foreground: #eef4ff;
+  --destructive: #ef4444;
+  --destructive-foreground: #fff5f5;
+  --border: rgba(148, 163, 184, 0.18);
+  --input: rgba(219, 231, 255, 0.1);
+  --ring: #93c5fd;
+  --surface: #051424;
+  --surface-bright: #2c3a4c;
+  --critical: #ef4444;
+  --attention: #f59e0b;
+  --service: #3b82f6;
+  --success: #10b981;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  background:
+    radial-gradient(circle at 52% 35%, rgba(59, 130, 246, 0.18), transparent 34rem),
+    linear-gradient(145deg, #051424 0%, #07192a 50%, #020617 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.glass-panel {
+  background: rgba(11, 31, 52, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.desktop-detail-panel {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-detail-panel {
+    display: block;
+  }
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #061522;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(11, 31, 52, 0.88) !important;
+  border-color: rgba(148, 163, 184, 0.2) !important;
+  color: #eef4ff !important;
+}
+
+.city-marker {
+  align-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.78);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.38);
+  display: flex;
+  height: 22px;
+  justify-content: center;
+  position: relative;
+  width: 22px;
+}
+
+.city-marker::before {
+  animation: marker-pulse 1.9s ease-out infinite;
+  background: currentColor;
+  border-radius: 999px;
+  content: "";
+  inset: -10px;
+  opacity: 0.3;
+  position: absolute;
+}
+
+.city-marker::after {
+  background: #fff;
+  border-radius: 999px;
+  content: "";
+  height: 6px;
+  position: relative;
+  width: 6px;
+  z-index: 1;
+}
+
+.city-marker-danger {
+  background: #ef4444;
+  color: #ef4444;
+}
+
+.city-marker-power {
+  background: #facc15;
+  color: #facc15;
+}
+
+.city-marker-traffic {
+  background: #f97316;
+  color: #f97316;
+}
+
+.city-marker-service {
+  background: #3b82f6;
+  color: #3b82f6;
+}
+
+.city-marker-selected {
+  height: 30px;
+  width: 30px;
+}
+
+@keyframes marker-pulse {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.55);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+}

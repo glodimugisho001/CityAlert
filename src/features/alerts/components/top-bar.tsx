@@ -13,7 +13,7 @@ export function TopBar({ onOpenReport }: { onOpenReport: () => void }) {
           <p className="truncate text-lg font-semibold tracking-[-0.01em] text-blue-100">
             CityAlert Goma
           </p>
-          <p className="hidden text-xs text-slate-400 sm:block">Ville connectee</p>
+          <p className="hidden text-xs text-slate-400 sm:block">Ville connectée</p>
         </div>
       </div>
 
@@ -22,7 +22,7 @@ export function TopBar({ onOpenReport }: { onOpenReport: () => void }) {
           <Search aria-hidden="true" className="size-4 text-slate-400" />
           <input
             className="w-full bg-transparent text-sm outline-none placeholder:text-slate-500"
-            placeholder="Rechercher une zone, coordonnees..."
+            placeholder="Rechercher une zone, coordonnées..."
             type="search"
           />
           <span className="text-xs font-medium text-slate-400">Goma</span>

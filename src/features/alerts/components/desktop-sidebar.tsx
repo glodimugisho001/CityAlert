@@ -15,7 +15,7 @@ const navigationItems = [
   { label: "Alertes", icon: Siren, isActive: false },
   { label: "Analytics", icon: Activity, isActive: false },
   { label: "Couches", icon: Layers, isActive: false },
-  { label: "Parametres", icon: Settings, isActive: false },
+  { label: "Paramètres", icon: Settings, isActive: false },
 ];
 
 export function DesktopSidebar() {
@@ -36,7 +36,7 @@ export function DesktopSidebar() {
       <div className="mt-6 rounded-2xl border border-white/10 bg-white/4 p-4">
         <p className="text-sm font-semibold text-slate-100">Live Sync: Active</p>
         <p className="mt-1 text-xs leading-5 text-slate-400">
-          Donnees citoyennes statiques, pretes pour Convex.
+          Données citoyennes statiques, prêtes pour Convex.
         </p>
       </div>
 

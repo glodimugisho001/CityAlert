@@ -53,7 +53,7 @@ export function ReportIncidentSheet({
           </div>
           <button
             aria-label="Fermer le signalement"
-            className="rounded-xl border border-white/10 bg-white/[0.06] p-2 text-slate-300 transition hover:bg-white/[0.1]"
+            className="rounded-xl border border-white/10 bg-white/6 p-2 text-slate-300 transition hover:bg-white/10"
             onClick={onClose}
             type="button"
           >
@@ -77,7 +77,7 @@ export function ReportIncidentSheet({
             <div className="grid grid-cols-2 gap-3">
               {categoryOptions.map(([category, meta]) => (
                 <button
-                  className={`rounded-2xl border p-4 text-left transition hover:bg-white/[0.08] ${meta.badgeClass}`}
+                  className={`rounded-2xl border p-4 text-left transition hover:bg-white/8 ${meta.badgeClass}`}
                   key={category}
                   onClick={() => onChooseCategory(category)}
                   type="button"
@@ -97,9 +97,9 @@ export function ReportIncidentSheet({
                 Description courte
               </label>
               <textarea
-                className="mt-3 min-h-32 w-full resize-none rounded-2xl border border-white/10 bg-white/[0.06] p-4 text-sm text-white outline-none placeholder:text-slate-500"
+                className="mt-3 min-h-32 w-full resize-none rounded-2xl border border-white/10 bg-white/6 p-4 text-sm text-white outline-none placeholder:text-slate-500"
                 onChange={(event) => onUpdateDescription(event.target.value)}
-                placeholder="Ex: route bloquee vers Ndosho, circulation tres lente..."
+                placeholder="Ex: route bloquée vers Ndosho, circulation très lente..."
                 value={draft.description}
               />
               <Button
@@ -141,10 +141,10 @@ export function ReportIncidentSheet({
             <div className="rounded-2xl border border-emerald-300/20 bg-emerald-400/10 p-5 text-center">
               <Check className="mx-auto size-10 text-emerald-200" />
               <h3 className="mt-3 text-lg font-semibold text-white">
-                Signalement pret
+                Signalement prêt
               </h3>
               <p className="mt-2 text-sm leading-6 text-slate-300">
-                Le flux est statique pour le moment. Cette interface est prete pour
+                Le flux est statique pour le moment. Cette interface est prête pour
                 brancher Convex ensuite.
               </p>
               <Button className="mt-4 w-full" onClick={onClose} size="lg">
@@ -184,7 +184,7 @@ function LocationButton({
       className={`flex items-center gap-3 rounded-2xl border p-4 text-left transition ${
         isActive
           ? "border-blue-300/40 bg-blue-500/15 text-blue-100"
-          : "border-white/10 bg-white/[0.05] text-slate-300 hover:bg-white/[0.08]"
+          : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/8"
       }`}
       onClick={onClick}
       type="button"

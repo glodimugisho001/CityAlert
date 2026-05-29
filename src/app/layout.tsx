@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "CityAlert Goma",
   description:
-    "Plateforme communautaire de securite urbaine en temps reel pour Goma.",
+    "Plateforme communautaire de signalement d'incidents en temps réel.",
 };
 
 export default function RootLayout({

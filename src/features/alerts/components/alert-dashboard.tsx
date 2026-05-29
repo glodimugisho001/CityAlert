@@ -36,12 +36,15 @@ export function AlertDashboard() {
               selectedIncident={alerts.selectedIncident}
             />
             <MapStatus />
-            <div className="desktop-detail-panel fixed left-6 top-44 z-[1000] max-h-[calc(100dvh-13rem)] w-[min(360px,calc(100%-7rem))] overflow-y-auto xl:left-[calc(18rem+2rem)]">
-              <AlertDetailsPanel
-                incident={alerts.selectedIncident}
-                onOpenReport={alerts.openReport}
-              />
-            </div>
+            {alerts.selectedIncident && (
+              <div className="desktop-detail-panel fixed left-6 top-44 z-1000 max-h-[calc(100dvh-13rem)] w-[min(360px,calc(100%-7rem))] overflow-y-auto xl:left-80">
+                <AlertDetailsPanel
+                  incident={alerts.selectedIncident}
+                  onClose={alerts.clearSelectedIncident}
+                  onOpenReport={alerts.openReport}
+                />
+              </div>
+            )}
             <FloatingReportButton onOpenReport={alerts.openReport} />
           </section>
 
@@ -51,12 +54,15 @@ export function AlertDashboard() {
               onSelectIncident={alerts.selectIncident}
               selectedIncidentId={alerts.selectedIncidentId}
             />
-            <div className="md:hidden">
-              <AlertDetailsPanel
-                incident={alerts.selectedIncident}
-                onOpenReport={alerts.openReport}
-              />
-            </div>
+            {alerts.selectedIncident && (
+              <div className="md:hidden">
+                <AlertDetailsPanel
+                  incident={alerts.selectedIncident}
+                  onClose={alerts.clearSelectedIncident}
+                  onOpenReport={alerts.openReport}
+                />
+              </div>
+            )}
           </aside>
         </main>
         <MobileNavigation onOpenReport={alerts.openReport} />
@@ -81,7 +87,7 @@ function MapStatus() {
     <div className="pointer-events-none absolute right-4 top-4 z-20 flex flex-wrap justify-end gap-2">
       <div className="glass-panel flex items-center gap-2 rounded-2xl px-3 py-2 text-xs font-semibold text-emerald-100">
         <Activity aria-hidden="true" className="size-4" />
-        Temps reel actif
+        Temps réel actif
       </div>
       <div className="glass-panel hidden items-center gap-2 rounded-2xl px-3 py-2 text-xs font-semibold text-slate-200 sm:flex">
         <LocateFixed aria-hidden="true" className="size-4 text-blue-200" />

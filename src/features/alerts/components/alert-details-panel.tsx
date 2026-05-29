@@ -1,4 +1,5 @@
-import { Clock, MapPin, Radio, ShieldCheck } from "lucide-react";
+"use client";
+import { Clock, MapPin, Radio, ShieldCheck, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -8,38 +9,52 @@ import { CategoryIcon } from "./category-icon";
 
 type AlertDetailsPanelProps = {
   incident: CityAlertIncident;
+  onClose: () => void;
   onOpenReport: () => void;
 };
 
 export function AlertDetailsPanel({
   incident,
+  onClose,
   onOpenReport,
 }: AlertDetailsPanelProps) {
   const meta = categoryMeta[incident.category];
 
   return (
     <aside className="glass-panel rounded-2xl p-4">
-      <div className="flex items-start gap-3">
-        <span
-          className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${meta.badgeClass}`}
-        >
-          <CategoryIcon category={incident.category} className="size-5" />
-        </span>
-        <div className="min-w-0 flex-1">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
-            Alerte selectionnee
-          </p>
-          <h2 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-white">
-            {incident.title}
-          </h2>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start gap-3 min-w-0 flex-1">
+          <span
+            className={`flex size-12 shrink-0 items-center justify-center rounded-2xl border ${meta.badgeClass}`}
+          >
+            <CategoryIcon category={incident.category} className="size-5" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+              Alerte sélectionnée
+            </p>
+            <h2 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-white">
+              {incident.title}
+            </h2>
+          </div>
         </div>
+        <Button
+          onClick={onClose}
+          variant="ghost"
+          size="icon"
+          className="size-8 rounded-xl border border-white/10 bg-white/3 text-slate-400 hover:bg-white/8 hover:text-white transition"
+          type="button"
+          aria-label="Fermer le panel"
+        >
+          <X className="size-4" />
+        </Button>
       </div>
 
       <p className="mt-4 text-sm leading-6 text-slate-300">{incident.description}</p>
 
       <div className="mt-4 grid grid-cols-2 gap-3">
         <Metric icon={MapPin} label="Zone" value={incident.neighborhood} />
-        <Metric icon={Clock} label="Signale" value={incident.timeAgo} />
+        <Metric icon={Clock} label="Signalé" value={incident.timeAgo} />
         <Metric icon={Radio} label="Source" value={incident.source} />
         <Metric
           icon={ShieldCheck}

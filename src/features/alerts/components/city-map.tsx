@@ -9,7 +9,7 @@ import type { CityAlertIncident } from "../types";
 
 type CityMapProps = {
   incidents: CityAlertIncident[];
-  selectedIncident: CityAlertIncident;
+  selectedIncident: CityAlertIncident | null;
   onSelectIncident: (incidentId: CityAlertIncident["id"]) => void;
 };
 
@@ -28,11 +28,12 @@ function createMarkerIcon(incident: CityAlertIncident, isSelected: boolean) {
 function MapSelectionController({
   selectedIncident,
 }: {
-  selectedIncident: CityAlertIncident;
+  selectedIncident: CityAlertIncident | null;
 }) {
   const map = useMap();
 
   useEffect(() => {
+    if (!selectedIncident) return;
     map.flyTo(selectedIncident.coordinates, 14, {
       duration: 0.8,
       easeLinearity: 0.25,
@@ -52,11 +53,11 @@ export function CityMap({
       incidents.reduce<Record<string, L.DivIcon>>((iconsById, incident) => {
         iconsById[incident.id] = createMarkerIcon(
           incident,
-          incident.id === selectedIncident.id,
+          incident.id === selectedIncident?.id,
         );
         return iconsById;
       }, {}),
-    [incidents, selectedIncident.id],
+    [incidents, selectedIncident?.id],
   );
 
   return (

@@ -6,7 +6,7 @@ import { CategoryIcon } from "./category-icon";
 
 type AlertFeedProps = {
   incidents: CityAlertIncident[];
-  selectedIncidentId: string;
+  selectedIncidentId: string | null;
   onSelectIncident: (incidentId: CityAlertIncident["id"]) => void;
 };
 
@@ -31,7 +31,7 @@ export function AlertFeed({
         </div>
         <button
           aria-label="Filtrer les alertes"
-          className="rounded-xl border border-white/10 bg-white/[0.05] p-2 text-slate-300 transition hover:bg-white/[0.09]"
+          className="rounded-xl border border-white/10 bg-white/5 p-2 text-slate-300 transition hover:bg-white/9"
           type="button"
         >
           <Filter aria-hidden="true" className="size-4" />
@@ -75,7 +75,7 @@ export function AlertFeed({
                   <span className="mt-3 flex flex-wrap gap-2">
                     {incident.tags.map((tag) => (
                       <span
-                        className="rounded-lg border border-white/10 bg-white/[0.08] px-2 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-slate-300"
+                        className="rounded-lg border border-white/10 bg-white/8 px-2 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-slate-300"
                         key={tag}
                       >
                         {tag}

@@ -12,20 +12,25 @@ const initialDraft: ReportDraft = {
 };
 
 export function useAlerts() {
-  const [selectedIncidentId, setSelectedIncidentId] = useState(cityIncidents[0].id);
+  const [selectedIncidentId, setSelectedIncidentId] = useState<string | null>(null);
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [reportStep, setReportStep] = useState(1);
   const [reportDraft, setReportDraft] = useState<ReportDraft>(initialDraft);
 
   const selectedIncident = useMemo(
     () =>
-      cityIncidents.find((incident) => incident.id === selectedIncidentId) ??
-      cityIncidents[0],
+      selectedIncidentId
+        ? cityIncidents.find((incident) => incident.id === selectedIncidentId) ?? null
+        : null,
     [selectedIncidentId],
   );
 
   function selectIncident(incidentId: CityAlertIncident["id"]) {
     setSelectedIncidentId(incidentId);
+  }
+
+  function clearSelectedIncident() {
+    setSelectedIncidentId(null);
   }
 
   function openReport() {
@@ -73,6 +78,7 @@ export function useAlerts() {
     goToPreviousStep,
     openReport,
     selectIncident,
+    clearSelectedIncident,
     updateDescription,
   };
 }
